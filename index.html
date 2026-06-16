@@ -3,24 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>전자지갑 자격증 클론 - 개선판</title>
+  <title>전자지갑 자격증 - Detail Upgrade</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="180x180" href="./favicon.png">
+  <meta name="apple-mobile-web-app-title" content="Q-Net">
+  <meta name="application-name" content="Q-Net">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="phone" aria-label="전자지갑 모바일 화면">
     <header class="topbar">전자지갑</header>
 
-    <section class="screen active" id="screen-list" data-screen>
+    <section id="screen-list" class="screen active">
       <div class="section-title">나의 자격증</div>
-
-      <article class="issuer-card">
-        <div class="issuer-logo-wrap">
-          <div class="issuer-logo">HRDK</div>
-        </div>
+      <div class="issuer-card">
+        <div class="issuer-logo">HRDK</div>
         <div class="issuer-name">한국산업인력공단</div>
-      </article>
+      </div>
 
-      <div class="tabs" role="tablist" aria-label="자격증 상태 탭">
+      <div class="tabs" role="tablist">
         <button class="tab active" data-tab="kept">보관</button>
         <button class="tab" data-tab="issued">발급</button>
       </div>
@@ -30,46 +33,107 @@
       </p>
 
       <label class="search">
-        <input type="text" id="searchInput" placeholder="자격증 검색" aria-label="자격증 검색" />
+        <input id="searchInput" type="text" placeholder="자격증 검색" aria-label="자격증 검색" />
         <span>⌕</span>
       </label>
 
       <div class="filter-row">
-        <button class="select" id="sortBtn">합격일순⌄</button>
+        <button class="select">합격일순⌄</button>
         <button class="edit">편집</button>
       </div>
 
-      <div class="cert-list" id="certList"></div>
+      <button class="cert-row" id="openCert">
+        <div>
+          <strong>건축산업기사</strong>
+          <span>한국산업인력공단&nbsp;&nbsp;|&nbsp;&nbsp;2026년 06월 05일</span>
+        </div>
+        <span class="mini-id">▣</span>
+      </button>
     </section>
 
-    <section class="screen" id="screen-front" data-screen>
-      <button class="icon-btn refresh" id="toBackBtn" aria-label="후면 보기">⟳</button>
-      <article class="cert-card card-enter" id="frontCard"></article>
-      <div class="action-row sticky-actions">
-        <button class="close grow" id="closeFrontBtn">닫기</button>
-        <button class="primary grow" id="issueBtn">발급</button>
-      </div>
+    <section id="screen-card" class="screen">
+      <button class="refresh" id="refreshBtn" aria-label="후면 전환">⟳</button>
+      <article class="cert-card" id="certCard">
+        <div class="card-head">건축산업기사</div>
+        <div class="photo" aria-label="증명사진"><img src="profile.png" alt="증명사진"></div>
+        <h1>고 영 후</h1>
+        <p>1996년 10월 24일</p>
+        <dl class="cert-meta">
+          <dt>발급기관</dt><dd>한국산업인력공단</dd>
+          <dt>자격번호</dt><dd>24638145027Z</dd>
+          <dt>합격일자</dt><dd>2026년 06월 05일</dd>
+        </dl>
+        
+      </article>
+      <button class="close" id="closeCard">닫기</button>
+      <button class="primary" id="issueBtn">발급</button>
     </section>
 
-    <section class="screen" id="screen-back" data-screen>
-      <button class="icon-btn refresh" id="toFrontBtn" aria-label="전면 보기">⟳</button>
-      <article class="cert-card back-card card-enter" id="backCard"></article>
-      <div class="action-row sticky-actions single">
-        <button class="close full" id="closeBackBtn">닫기</button>
-      </div>
+    <section id="screen-back" class="screen">
+      <button class="refresh" id="refreshBack" aria-label="전면 전환">⟳</button>
+      <article class="back-card">
+        <div class="card-head">건축산업기사</div>
+        <div class="photo small"><img src="profile.png" alt="증명사진"></div>
+        <h1>고 영 후</h1>
+        <p>1996년 10월 24일</p>
+        <div class="qr" aria-label="데모 QR 코드" id="qrBox"></div>
+      </article>
+      <button class="close wide" id="closeBack">닫기</button>
     </section>
 
-    <section class="screen" id="screen-detail" data-screen>
-      <button class="icon-btn refresh" id="detailBackBtn" aria-label="전면으로 돌아가기">⟳</button>
-      <article class="detail-card card-enter" id="detailCard"></article>
+    <section id="screen-detail" class="screen detail-screen">
+      <button class="refresh" id="refreshDetail" aria-label="전면으로 돌아가기">⟳</button>
+      <article class="detail-card detail-upgraded" aria-label="자격증 상세 화면">
+        <div class="detail-watermark"></div>
+        <div class="security-grid"></div>
+
+        <div class="detail-head">
+          <span class="detail-label">국가기술자격증</span>
+          <span class="detail-sub">National Technical Qualification Certificate</span>
+        </div>
+
+        <div class="hologram" aria-hidden="true">HRDK</div>
+        <div class="photo detail-photo"><img src="profile.png" alt="증명사진"></div>
+
+        <div class="cert-title-block">
+          <strong>건축산업기사</strong>
+          <span>Industrial Engineer Architecture</span>
+        </div>
+
+        <dl class="detail-list">
+          <dt>자격관리번호</dt><dd>202606160945-10-482731</dd>
+          <dt>자격번호</dt><dd>24638145027Z</dd>
+          <dt>자격종목</dt><dd>건축산업기사</dd>
+          <dt>성명</dt><dd>고영후</dd>
+          <dt>생년월일</dt><dd>1996년 10월 24일</dd>
+          <dt>합격연월일</dt><dd>2026년 06월 05일</dd>
+          <dt>발급연월일</dt><dd>2026년 06월 16일</dd>
+          <dt>주무부처(청)</dt><dd>국토교통부</dd>
+        </dl>
+
+        <div class="verification-box">
+          <div class="micro-qr" id="microQr" aria-hidden="true"></div>
+          <div>
+            <strong>전자지갑 검증 영역</strong>
+            <p></p>
+          </div>
+        </div>
+
+        <div class="stamp">한국산업인력공단 이사장</div>
+
+        <div class="bottom-cert">
+          <div class="footer-mark">HRDK</div>
+          <div class="microtext"> CERTIFICATE · OFFICIAL USE · </div>
+        </div>
+      </article>
     </section>
 
     <nav class="bottom-nav" aria-label="하단 메뉴">
-      <button type="button">⌂<span>홈</span></button>
-      <button type="button">♙<span>마이</span></button>
-      <button type="button" class="main-btn">Q<span>지갑</span></button>
-      <button type="button">↪<span>로그아웃</span></button>
-      <button type="button">☰<span>메뉴</span></button>
+      <button>⌂<span>홈</span></button>
+      <button>♙<span>마이</span></button>
+      <button class="main-btn">Q<span>지갑</span></button>
+      <button>↪<span>로그아웃</span></button>
+      <button>☰<span>메뉴</span></button>
     </nav>
   </main>
 
